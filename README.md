@@ -65,7 +65,11 @@ protected void onDestroy() {
 
 我们根据以上任何一种方法完成注册后,这个接收者就能工作了，下面我们用一下方式发送一条广播。
 ```
-
+private void send(){
+    Intent intent=new Intent("android.intent.action.MY_BROADCAST");
+    intent.putExtra("msg","hello receiver");
+    sendBroadcast(intent);
+}
 ```
 
 
