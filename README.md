@@ -373,5 +373,6 @@ public class MsgPushService extends Service {
 
 参考于[这篇文章](http://blog.csdn.net/liuhe688/article/details/6955668)
 
-[源码地址](https://github.com/xvjialing/BroadcastrRceiverDemo)
+源码地址:[https://github.com/xvjialing/BroadcastrRceiverDemo](https://github.com/xvjialing/BroadcastrRceiverDemo)
 
+[个人博客]（http://www.xvjialing.xyz/wordpress/）
