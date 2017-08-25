@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lytech.xvjialing.broadcastreceiverdemo">
 
+    <permission
+        android:name="xjl.permission.MY_BROADCAST_PERMISSION"
+        android:protectionLevel="normal" />
+
+    <uses-permission android:name="xjl.permission.MY_BROADCAST_PERMISSION" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,15 +25,67 @@
             </intent-filter>
         </activity>
 
+        <!-- <receiver -->
+        <!-- android:name=".MyReceiver" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MY_BROADCAST" /> -->
+
+
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+
         <receiver
-            android:name=".MyReceiver"
+            android:name=".FirstReceiver"
             android:enabled="true"
             android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.MY_BROADCAST" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".SecondReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.MY_BROADCAST" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".ThirdReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="998">
+                <action android:name="android.intent.action.MY_BROADCAST" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <!--开机广播接收者-->
+        <receiver
+            android:name=".BootCompleteReceiver"
+            android:enabled="true"
+            android:exported="true" >
+
             <intent-filter>
-                <action android:name="android.intent.action.MY_BROADCAST"/>
+                <!--开机广播地址-->
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
+
+        <!--消息推送服务-->
+        <service
+            android:name=".MsgPushService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

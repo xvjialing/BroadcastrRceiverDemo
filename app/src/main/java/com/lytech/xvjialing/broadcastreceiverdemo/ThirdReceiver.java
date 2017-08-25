@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-public class MyReceiver extends BroadcastReceiver {
-    private static final String TAG=MyReceiver.class.getSimpleName();
+public class ThirdReceiver extends BroadcastReceiver {
+
+    private static final String TAG = ThirdReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String msg=intent.getStringExtra("msg");
+        String msg=getResultExtras(true).getString("msg");
         Log.d(TAG, "onReceive: "+msg);
-        abortBroadcast();
+
     }
 }

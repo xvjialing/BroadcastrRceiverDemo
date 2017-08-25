@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MyReceiver myReceiver;
     private Button btn_sendMsg;
+    private Button btn_sendOrderedMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn_sendMsg = (Button) findViewById(R.id.btn_sendMsg);
+        btn_sendOrderedMsg = (Button) findViewById(R.id.btn_sendOrderedMsg);
 
         btn_sendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,7 +28,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        registerBroadcastReceiver();
+        btn_sendOrderedMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendOrderedMsg();
+            }
+        });
+
+//        registerBroadcastReceiver();
     }
 
     private void registerBroadcastReceiver() {
@@ -41,12 +50,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(myReceiver);
+//        unregisterReceiver(myReceiver);
     }
 
     private void send(){
         Intent intent=new Intent("android.intent.action.MY_BROADCAST");
         intent.putExtra("msg","hello receiver");
         sendBroadcast(intent);
+    }
+
+    private void sendOrderedMsg(){
+        Intent intent=new Intent("android.intent.action.MY_BROADCAST");
+        intent.putExtra("msg","hello receiver");
+        sendOrderedBroadcast(intent,"xjl.permission.MY_BROADCAST_PERMISSION");
     }
 }
